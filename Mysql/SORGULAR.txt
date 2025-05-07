@@ -1,0 +1,72 @@
+			SELECT (SEÇME SORGULARI)
+
+1. Yaşı 30'dan büyük olan personelleri listeleyelim
+
+--> SELECT * FROM `calisanlar` WHERE yasi > 30
+
+2. id numarası 6 olan kaydın id,adı,soyadı ve maaşı alanlarını gösterelim
+
+--> SELECT id,adi, soyadi, maasi FROM `calisanlar` WHERE id=6
+
+3. Ar-Ge departmanında çalşan erkek personelin tüm alanlarını listelelim
+
+--> SELECT * FROM calisanlar WHERE cinsiyeti="Erkek" AND departmani = "Ar-Ge"
+
+4. Maaşı 9000 ila 12000 TL arasında olan kadın personelleri listeleyelim
+
+--> SELECT * FROM calisanlar WHERE cinsiyeti="Kadın" AND maasi <= 12000 AND maasi >= 9000 
+	(VEYA--> SELECT * FROM calisanlar WHERE cinsiyeti="Kadın" AND maasi BETWEEN 9000 AND 12000)
+	
+5. 2020 Yılından önce işe başlamış 30 yaşından büyük erkek personelin kaydını listeleyelim
+
+--> SELECT * FROM calisanlar WHERE ise_giris_tarihi < "2020-01-01" AND yasi > 30 AND cinsiyeti="Erkek"
+	VEYA --> SELECT * FROM calisanlar WHERE YEAR(ise_giris_tarihi) < 2020 AND yasi > 30 AND cinsiyeti="Erkek"
+
+6. Adı "A" harfi ile başlayan erkek personeli listeleyelim
+
+--> SELECT * FROM calisanlar WHERE adi LIKE "A%" AND cinsiyeti="Erkek"
+
+7. Adında ve soyadında herhangi bir yerde "a" harfi bulunan kayıtları listelelim
+
+--> SELECT * FROM calisanlar WHERE adi LIKE "%a%" AND soyadi LIKE "%a%"
+
+8. Görev tanımında "Yazılım" ifadesi geçen kayıtları listeleyelim
+
+--> SELECT * FROM calisanlar WHERE gorevi LIKE "%Yazılım%" 
+
+9. Tüm personelin Tüm alanlarını gösterip adına göre artan sıralatalım
+
+--> SELECT * FROM calisanlar ORDER BY adi ASC
+
+10. Tüm kadın personeli maaşına göre azalan sıralatalım
+
+--> SELECT * FROM calisanlar WHERE cinsiyeti="Kadın" ORDER BY maasi DESC
+
+
+			INSERT SORGUSU
+
+INSERT INTO calisanlar VALUES ('31','Mehmet','HALİS','Erkek','33','15400','Güvenlik','Ana Bina','Gaziantep','2019-02-22','Evli') 
+NOT: Bütün alnlara veri girilecekse -id alanı da dahil- tablodaki alan adlarını belirtmeye gerek yoktur ancak;
+
+Örn. Sadece adi,soyadi ve medeni_durumu alanlarına veri girilecek diğer alanlar boş geçilecekse
+
+INSERT INTO calisanlar (adi, soyadi, medeni_durumu) VALUES ('Hasan', 'İMAMOĞLU', 'Bekar') şeklinde bir sorgu çalıştırlır
+
+
+			UPDATE SORGUSU
+
+1. 8 id numaralı kaydın soyadi alanını "KIRAYOĞLU" olarak güncelleyelim.
+
+--> UPDATE calisanlar SET soyadi="KIRAYOĞLU" WHERE id=8;
+
+2. 10 id numaralı kaydın medeni durumunu "Bekar" ve maaşını 9900 TL olarak güncelleyelim
+
+--> UPDATE calisanlar SET medeni_durumu="Bekar", maasi="9900" WHERE id=10
+
+3. Satış ve Pazarlama departmanında çalışanların maaşlarını 14000 TL olarak güncelleyelim
+
+--> UPDATE calisanlar SET maasi="14000" WHERE departmani="Satış" OR departmani="Pazarlama"
+
+4. Evli erkek psersonelin maaşına 1100TL zam yapacak SQL komutunu yazalım
+
+--> UPDATE calisanlar SET maasi=maasi+1100 WHERE cinsiyeti="Erkek" AND medeni_durumu="Evli"
