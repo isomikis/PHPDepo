@@ -59,5 +59,7 @@
 		  ?>
       </tbody>
 </table>
+<br>
+<a href="calisan_ekle.php">YENİ ÇALIŞAN EKLE</a>
 </body>
 </html>
