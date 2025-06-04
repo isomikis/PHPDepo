@@ -25,6 +25,7 @@
           <th scope="col">MESLEK</th>
           <th scope="col">MAAŞI</th>
           <th scope="col">SİL</th>
+          <th scope="col">GÜNCELLE</th>
          
         </tr>
 		  <?php
@@ -47,6 +48,7 @@
           <td><?php echo $calisanlar->meslek ?></td>
           <td><?php echo $calisanlar->maas ?></td>
 		  <td><a href="personel_sil.php?tckimlik=<?php echo $calisanlar->tckimlik ?>" onclick="return confirm('Bu kaydı silmek istediğinize emin misiniz?');"> SİL</a></td>
+		  <td><a href="personel_guncelle.php?tckimlik=<?php echo $calisanlar->tckimlik ?>" > GÜNCELLE</a></td>
          
           
         </tr>
